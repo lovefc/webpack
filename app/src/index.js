@@ -2,8 +2,7 @@ require('./css/mdui.min.css');
 require('./css/normalize.min.css');
 require('./css/style.css');
 let $ = require('./js/jquery.min.js');
-
-let fcup = require('./js/fcup.js');
+/*
 let mdui = require('./js/mdui.js');
 
 let inst = new mdui.Headroom('#header');
@@ -21,6 +20,8 @@ var inst2 = new mdui.Tooltip('#document', {
 var inst3 = new mdui.Tooltip('#down', {
   content: '下载'
 });
+*/
+let fcup = require('./js/fcup.js');
 
 // 上传案例
 let up = new fcup({
