@@ -106,7 +106,8 @@ module.exports = {
             chunks: ['assgin/js/index'],
             inject: true,
             filename: 'index.html', // 输出模板
-            template: 'app/src/page/index2.html' //  HTML模板路径
+            template: 'app/src/page/index2.html', //  HTML模板路径
+			favicon: 'app/src/page/favicon.ico'
         })
     ]
 };
