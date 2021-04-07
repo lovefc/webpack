@@ -118,7 +118,8 @@ module.exports = {
             inject: 'body', // 这里是指定js注入的位置,body为在body的后面
             filename: 'index.html', // 输出模板
             template: 'app/src/page/index2.html', //  HTML模板路径
-			favicon: 'app/src/page/favicon.ico'
+			favicon: 'app/src/page/favicon.ico',
+			//showErrors: true,
         })
     ]
 };
