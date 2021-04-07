@@ -1,0 +1,19 @@
+/** 定义logo的字体 **/
+@font-face{
+    font-family: 'logo'; 
+    src: url('../fonts/casablancalhf.otf');
+}
+
+.body {
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+}
+
+.logo {
+    font-family: "logo";
+    font-size: 25px;
+    /*
+    background: linear-gradient(to right, #231557, rgb(18, 5, 65));
+    -webkit-background-clip: text;
+    color: transparent;
+    */
+}
