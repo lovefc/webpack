@@ -81,6 +81,17 @@ module.exports = {
                     esModule: false
                 }
             },
+			/*
+            { // js打包
+                test: /\.js$/,
+                loader: require.resolve('file-loader'),
+                options: {
+                    name: '[name].[ext]',
+                    outputPath: 'assgin/js/',
+                    esModule: false
+                }
+            },
+            */			
             {
                 // 命中字体包
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -104,7 +115,7 @@ module.exports = {
         new htmlWebpackPlugin({ // 打包HTML
             //chunks: ['jquery','mdui','fcup','index'],
             chunks: ['assgin/js/index'],
-            inject: true,
+            inject: 'body', // 这里是指定js注入的位置,body为在body的后面
             filename: 'index.html', // 输出模板
             template: 'app/src/page/index2.html', //  HTML模板路径
 			favicon: 'app/src/page/favicon.ico'
