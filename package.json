@@ -15,6 +15,7 @@
     "html-withimg-loader": "^0.1.16",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
-    "webpack": "^5.30.0"
+    "webpack": "^5.30.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }
