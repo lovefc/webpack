@@ -81,17 +81,16 @@ module.exports = {
                     esModule: false
                 }
             },
-			/*
+
             { // js打包
                 test: /\.js$/,
-                loader: require.resolve('file-loader'),
+				exclude: /(node_modules)/,
+                loader: 'babel-loader',
                 options: {
-                    name: '[name].[ext]',
-                    outputPath: 'assgin/js/',
-                    esModule: false
+                    presets: ['@babel/preset-env'],
                 }
             },
-            */			
+			
             {
                 // 命中字体包
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
