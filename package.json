@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "dev": "node bin/www",
-    "start": "npm run dev"
+    "start": "npm run dev",
+	"watch": "webpack --watch"
   },
   "author": "lovefc",
   "license": "ISC",
