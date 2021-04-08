@@ -1,26 +1,30 @@
 require('./css/mdui.min.css');
 require('./css/normalize.min.css');
 require('./css/style.css');
-let $ = require('./js/jquery.min.js');
-/*
-let mdui = require('./js/mdui.js');
+//let $ = require('./js/jquery.min.js');
 
+let mdui = require('./js/mdui.js');
+	console.log(mdui);
 let inst = new mdui.Headroom('#header');
 inst.disable();
 // 进度条
+
 function Progress(value) {
   $('#myProgress').css('width', value + '%');
 }
-var inst1 = new mdui.Tooltip('#preview', {
+
+let inst1 = new mdui.Tooltip('#preview', {
   content: '案例展示'
 });
-var inst2 = new mdui.Tooltip('#document', {
+
+let inst2 = new mdui.Tooltip('#document', {
   content: '开发文档'
 });
-var inst3 = new mdui.Tooltip('#down', {
+
+let inst3 = new mdui.Tooltip('#down', {
   content: '下载'
 });
-*/
+
 let fcup = require('./js/fcup.js');
 
 // 上传案例
@@ -28,7 +32,7 @@ let up = new fcup({
 
   id: "upid", // 绑定id
 
-  url: "./php/file.php", // url地址
+  url: "http://127.0.0.1:3001/app/upload", // url地址
 
   type: "jpg,png,jpeg,gif", // 限制上传类型，为空不限制
 
