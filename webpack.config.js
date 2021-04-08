@@ -12,6 +12,8 @@ const TerserPlugin = require("terser-webpack-plugin"); // 引入 terser-webpack-
 module.exports = {
     entry: {
         'assgin/js/index': './app/src/index.js', //入口文件
+		// 可以定义多个入口
+		// 键名就是打包后被压缩的js的名称,如果要目录,就用/号分割
     },
     output: {
         path: __dirname + '/dist', // 输出路径
