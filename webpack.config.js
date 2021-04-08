@@ -1,96 +1,53 @@
-var webpack = require('webpack');
-
-var path = require('path');
 /*
-var HtmlWebpackPlugin = require('html-webpack-plugin'); //打包html的插件
-
-module.exports = {
-
-     entry:{
-         'app/dist/js/index':'./app/src/js/index.js'  //入口文件
-
-         //我们的是多页面项目，多页面入口配置就是这样，
-         //app/src/page下可能还会有很多页面，照着这样配置就行
-
-     },
-     output:{
-		  path: __dirname + '/dist',    // 输出路径
-          //__dirname 当前webpack.config.js的路径
-          filename: '[name].js',      //打包后index.js的名字，
-                                     // 这个[name]的意思是,配置入口entry键值对里的key值,app/dist/js/index,最后的index，
-                                     //这里无论你src/js/index.js这个脚本如何命名，打包后都将是index.js
-     },
-	 
-    module: {
-        rules: [  
-            {
-                test: /\.css$/,   // 正则表达式，表示.css后缀的文件
-                use: ['style-loader','css-loader']   // 针对css文件使用的loader，注意有先后顺序，数组项越靠后越先执行
-            }
-        ]
-    },	 
-	
-	watch: true,   
-
-
-     //插件
-     plugins:[
-        new HtmlWebpackPlugin({
-            chunks:['app/dist/js/index'],
-            filename:'app/index.html',
-            template:'app/src/page/index.html'  
-        })
-     ]
-}
-*/
-
+ * @Author       : lovefc
+ * @Date         : 2021-04-07 18:56:03
+ * @LastEditTime : 2021-04-08 14:50:46
+ */
+const webpack = require('webpack');
+const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin'); //  引入html-webpack-plugin插件
+
 module.exports = {
     entry: {
-        //jquery:'./app/src/js/jquery.min.js',
-        //mdui: './app/src/js/mdui.min.js',
-        //fcup: './app/src/js/fcup.min.js',
         'assgin/js/index': './app/src/index.js', //入口文件
-        //common: ['./app/src/js/jquery.min.js', './app/src/js/mdui.min.js', './app/src/js/fcup.min.js', './app/src/js/cs.js']
-        //我们的是多页面项目，多页面入口配置就是这样，
-        //app/src/page下可能还会有很多页面，照着这样配置就行
     },
     output: {
         path: __dirname + '/dist', // 输出路径
         filename: '[name].js', // 输出文件名
     },
     module: {
-        rules: [ // 其中包含各种loader的使用规则
-            {
+        // 其中包含各种loader的使用规则
+        rules: [{
+                // 命中html后缀文件,使用html-withimg-loader去处理
                 test: /\.(htm|html)$/,
                 loader: 'html-withimg-loader'
             },
             {
-                test: /\.css$/, // 正则表达式，表示打包.css后缀的文件
+                // 正则表达式，表示打包.css后缀的文件
+                test: /\.css$/,
+                // 只命中指定 目录下的文件，加快Webpack 搜索速度
                 include: __dirname,
                 // 排除 node_modules 目录下的文件
                 exclude: /(node_modules)/,
                 use: ['style-loader', 'css-loader'] // 针对css文件使用的loader，注意有先后顺序，数组项越靠后越先执行
             },
-            { // 图片打包
+            { // 图片处理
                 test: /\.(png|jpg|gif|svg)$/,
                 loader: require.resolve('file-loader'),
                 options: {
                     name: '[name].[ext]',
-                    outputPath: 'assgin/images/',
+                    outputPath: 'assgin/images/', // 输出目录
                     esModule: false
                 }
             },
-
-            { // js打包
+            { // js兼容处理
                 test: /\.js$/,
-				exclude: /(node_modules)/,
+                exclude: /(node_modules)/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/preset-env'],
+                    presets: ['@babel/preset-env'], // 声明兼容模式
                 }
             },
-			
             {
                 // 命中字体包
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -110,15 +67,28 @@ module.exports = {
             }
         ]
     },
-    plugins: [ // 打包需要的各种插件
+    // 打包插件
+    plugins: [
         new htmlWebpackPlugin({ // 打包HTML
-            //chunks: ['jquery','mdui','fcup','index'],
             chunks: ['assgin/js/index'],
             inject: 'body', // 这里是指定js注入的位置,body为在body的后面
             filename: 'index.html', // 输出模板
             template: 'app/src/page/index2.html', //  HTML模板路径
-			favicon: 'app/src/page/favicon.ico',
-			//showErrors: true,
-        })
-    ]
+            favicon: 'app/src/page/favicon.ico',
+            //showErrors: true,
+        }),
+        new webpack.ProvidePlugin({
+           $: "jquery",
+           jQuery: "jquery",
+           jquery: "jquery",
+           "window.jQuery": "jquery"
+        })		
+    ],
+    // 静态服务器,参考https://webpack.docschina.org/configuration/dev-server/
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        port: 9000, // 端口
+        open: true, // 自动打开浏览器
+        compress: true, // 启动gzip压缩
+    },
 };
