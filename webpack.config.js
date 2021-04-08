@@ -1,11 +1,13 @@
 /*
  * @Author       : lovefc
  * @Date         : 2021-04-07 18:56:03
- * @LastEditTime : 2021-04-08 14:50:46
+ * @LastEditTime : 2021-04-08 16:12:06
  */
 const webpack = require('webpack');
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin'); //  引入html-webpack-plugin插件
+const TerserPlugin = require("terser-webpack-plugin"); // 引入 terser-webpack-plugin 插件 (压缩js,css)
+// 关于压缩js,css参考文章:https://blog.csdn.net/qq_24147051/article/details/103557728
 
 module.exports = {
     entry: {
@@ -78,17 +80,50 @@ module.exports = {
             //showErrors: true,
         }),
         new webpack.ProvidePlugin({
-           $: "jquery",
-           jQuery: "jquery",
-           jquery: "jquery",
-           "window.jQuery": "jquery"
-        })		
+            $: "jquery",
+            jQuery: "jquery",
+            jquery: "jquery",
+            "window.jQuery": "jquery"
+        })
     ],
     // 静态服务器,参考https://webpack.docschina.org/configuration/dev-server/
+	/*
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         port: 9000, // 端口
         open: true, // 自动打开浏览器
         compress: true, // 启动gzip压缩
     },
+	*/
+    // 压缩js 参考:https://webpack.docschina.org/plugins/terser-webpack-plugin/
+	// 附带参考: https://segmentfault.com/a/1190000039389590
+    optimization: {
+        // 配置可优化
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                //  指定压缩的文件
+                include: /\.js(\?.*)?$/i,
+
+                // 排除压缩的文件
+                // exclude:/\.js(\?.*)?$/i,
+
+                //  是否启用多线程运行，默认为true，开启，默认并发数量为os.cpus()-1
+                //  可以设置为false(不使用多线程)或者数值（并发数量）
+                parallel: true,
+
+                //  可以设置一个function，使用其它压缩插件覆盖默认的压缩插件，默认为undefined，d，
+                minify: undefined,
+
+                //  是否将代码注释提取到一个单独的文件。
+                //  属性值：Boolean | String | RegExp | Function<(node, comment) -> Boolean|Object> | Object
+                //  默认为true， 只提取/^\**!|@preserve|@license|@cc_on/i注释
+                //  感觉没什么特殊情况直接设置为false即可
+                extractComments: false,
+
+                //  压缩时的选项设置
+                terserOptions: {}
+            })
+        ]
+    }
 };
