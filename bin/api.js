@@ -86,7 +86,7 @@ const server = http.createServer(async (req, res) => {
        if (error) return console.log("追加文件失败" + error.message);
     });
 
-    let url = '/dist/upload/'.name;
+    let url = '/dist/upload/'+name;
     // 片数相等,就返回成功
     if (file_index === file_total) {
       res.end('{"status":2,"message":"上传完成","url":"' + url + '","file_index":"' + file_index + '"}');
