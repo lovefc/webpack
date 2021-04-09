@@ -57,12 +57,13 @@ let up = new fcup({
 
   // 开始事件                
   start: () => {
-    Progress(0);
+	Progress(0);
     console.log('开始上传');
   },
 
   // 等待上传事件，可以用来loading
   beforeSend: () => {
+	Progress(0);  
     console.log('等待请求中');
   },
 
