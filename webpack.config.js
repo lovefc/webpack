@@ -1,7 +1,7 @@
 /*
  * @Author       : lovefc
  * @Date         : 2021-04-07 18:56:03
- * @LastEditTime : 2021-04-08 16:12:06
+ * @LastEditTime : 2021-04-09 09:54:10
  */
 const webpack = require('webpack');
 const path = require('path');
@@ -10,14 +10,18 @@ const TerserPlugin = require("terser-webpack-plugin"); // 引入 terser-webpack-
 // 关于压缩js,css参考文章:https://blog.csdn.net/qq_24147051/article/details/103557728
 
 module.exports = {
+
+    // 定义模式
+    mode: 'development',
+
     entry: {
         'assgin/js/index': './app/src/index.js', //入口文件
-		// 可以定义多个入口
-		// 键名就是打包后被压缩的js的名称,如果要目录,就用/号分割
+        // 可以定义多个入口
+        // 键名就是打包后被压缩的js的名称,如果要目录,就用/号分割
     },
     output: {
         path: __dirname + '/dist', // 输出路径
-        filename: '[name].js', // 输出文件名
+        filename: '[name].[hash:7].js', // 输出文件名
     },
     module: {
         // 其中包含各种loader的使用规则
@@ -89,16 +93,14 @@ module.exports = {
         })
     ],
     // 静态服务器,参考https://webpack.docschina.org/configuration/dev-server/
-	/*
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         port: 9000, // 端口
         open: true, // 自动打开浏览器
         compress: true, // 启动gzip压缩
     },
-	*/
     // 压缩js 参考:https://webpack.docschina.org/plugins/terser-webpack-plugin/
-	// 附带参考: https://segmentfault.com/a/1190000039389590
+    // 附带参考: https://segmentfault.com/a/1190000039389590
     optimization: {
         // 配置可优化
         minimize: true,
