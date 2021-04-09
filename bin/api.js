@@ -13,6 +13,23 @@ const fc_body = require('fc-body');
 const fs = require("fs");
 const path = require("path");
 
+let mkdir = function(folderpath) {
+    try {
+        const pathArr = folderpath.split('/');
+        let _path = '';
+        for (let i = 0; i < pathArr.length; i++) {
+            if (pathArr[i]) {
+                _path += `${pathArr[i]}/`;
+                console.log(_path);
+                console.log(fs.existsSync(_path));
+                if (!fs.existsSync(_path)) {
+                    fs.mkdirSync(_path);
+                }
+            }
+        }
+    } catch (e) { }
+}
+
 const server = http.createServer(async (req, res) => {
 
   //设置允许跨域的域名，*代表允许任意域名跨域
@@ -59,6 +76,8 @@ const server = http.createServer(async (req, res) => {
       return;
     }
     let file_dir = dir + "/dist/upload/"
+	
+	mkdir(file_dir);
 
     let file_dir_name = file_dir + name;
 
@@ -67,7 +86,7 @@ const server = http.createServer(async (req, res) => {
        if (error) return console.log("追加文件失败" + error.message);
     });
 
-    let url = './server/upload/'.name;
+    let url = '/dist/upload/'.name;
     // 片数相等,就返回成功
     if (file_index === file_total) {
       res.end('{"status":2,"message":"上传完成","url":"' + url + '","file_index":"' + file_index + '"}');
