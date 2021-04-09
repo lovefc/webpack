@@ -93,12 +93,14 @@ module.exports = {
         })
     ],
     // 静态服务器,参考https://webpack.docschina.org/configuration/dev-server/
+	/*
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         port: 9000, // 端口
         open: true, // 自动打开浏览器
         compress: true, // 启动gzip压缩
     },
+	*/
     // 压缩js 参考:https://webpack.docschina.org/plugins/terser-webpack-plugin/
     // 附带参考: https://segmentfault.com/a/1190000039389590
     optimization: {
