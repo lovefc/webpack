@@ -1,7 +1,8 @@
 require('./css/mdui.min.css');
 require('./css/normalize.min.css');
 require('./css/style.css');
-//let $ = require('./js/jquery.min.js');
+
+let domain = document.domain;
 
 let mdui = require('./js/mdui.js');
 	console.log(mdui);
@@ -32,7 +33,7 @@ let up = new fcup({
 
   id: "upid", // 绑定id
 
-  url: "http://127.0.0.1:3001/app/upload", // url地址
+  url: "http://"+domain+":3001/app/upload", // url地址
 
   type: "jpg,png,jpeg,gif", // 限制上传类型，为空不限制
 
