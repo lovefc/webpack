@@ -66,7 +66,7 @@ module.exports = {
                 loader: 'file-loader',
                 // 新增options配置参数：关于file-loader的配置项
                 options: {
-                    limit: 10000,
+                    limit: 100000,
                     // 定义打包完成后最终导出的文件路径
                     outputPath: 'assgin/css/fonts/',
                     // 文件的最终名称

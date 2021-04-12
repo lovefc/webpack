@@ -26,7 +26,7 @@ let inst3 = new mdui.Tooltip('#down', {
   content: '下载'
 });
 
-let fcup = require('./js/fcup.js');
+let fcup = require('fcup');
 
 // 上传案例
 let up = new fcup({
