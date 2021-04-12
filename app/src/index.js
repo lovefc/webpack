@@ -1,30 +1,10 @@
-require('./css/mdui.min.css');
-require('./css/normalize.min.css');
 require('./css/style.css');
 
 let domain = document.domain;
 
-let mdui = require('./js/mdui.js');
-	console.log(mdui);
-let inst = new mdui.Headroom('#header');
-inst.disable();
-// 进度条
-
 function Progress(value) {
   $('#myProgress').css('width', value + '%');
 }
-
-let inst1 = new mdui.Tooltip('#preview', {
-  content: '案例展示'
-});
-
-let inst2 = new mdui.Tooltip('#document', {
-  content: '开发文档'
-});
-
-let inst3 = new mdui.Tooltip('#down', {
-  content: '下载'
-});
 
 let fcup = require('fcup');
 
@@ -110,4 +90,20 @@ let up = new fcup({
     // 如果接口没有错误，必须要返回true，才不会终止上传循环
     return true;
   }
+});
+
+
+let inst = new mdui.Headroom('#header');
+inst.disable();
+// 进度条
+let inst1 = new mdui.Tooltip('#preview', {
+  content: '案例展示'
+});
+
+let inst2 = new mdui.Tooltip('#document', {
+  content: '开发文档'
+});
+
+let inst3 = new mdui.Tooltip('#down', {
+  content: '下载'
 });
