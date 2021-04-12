@@ -37,8 +37,8 @@ module.exports = {
                 include: __dirname,
                 // 排除 node_modules 目录下的文件
                 exclude: /(node_modules)/,
-                use: ['style-loader', 'css-loader'] // 针对css文件使用的loader，注意有先后顺序，数组项越靠后越先执行
-            },
+                use: ['style-loader', 'css-loader'] // 针对css文件使用的loader，注意有先后顺序，数组项越靠后越先执行      
+			},
             { // 图片处理
                 test: /\.(png|jpg|gif|svg)$/,
                 loader: require.resolve('file-loader'),
@@ -81,16 +81,18 @@ module.exports = {
             chunks: ['assgin/js/index'],
             inject: 'body', // 这里是指定js注入的位置,body为在body的后面
             filename: 'index.html', // 输出模板
-            template: 'app/src/page/index2.html', //  HTML模板路径
+            template: 'app/src/page/index.html', //  HTML模板路径
             favicon: 'app/src/page/favicon.ico',
             //showErrors: true,
         }),
+		/*
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
             jquery: "jquery",
             "window.jQuery": "jquery"
         })
+		*/
     ],
     // 静态服务器,参考https://webpack.docschina.org/configuration/dev-server/
 	/*
