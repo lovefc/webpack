@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node bin/www",
     "start": "npm run dev",
-    "watch": "webpack -p"
+    "watch": "webpack --watch"
   },
   "author": "lovefc",
   "license": "ISC",
