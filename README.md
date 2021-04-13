@@ -1,3 +1,10 @@
+## 一个小项目
+
+关于fcup.js如何在node中用webpack打包,和后端处理
+
+正好用来学习一下webpack打包
+
+
 ## 本地使用
 
 ```bash
